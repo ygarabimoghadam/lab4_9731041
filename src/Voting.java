@@ -63,32 +63,53 @@ public class Voting {
         this.polls = polls;
     }
 
-    public boolean vote(Person p , String s ){
+    public boolean vote(int ya, Person p , String s ){
         boolean output = false ;
+        if(ya == 0){
+
         int i = 0 ;
-        if(polls.containsKey(s)){
+        boolean a = polls.containsKey(s);
+        if(a){
             i++;
             JalaliCalendar d = new JalaliCalendar(1399,8,07);
             String date =  d.toString();
             Vote v = new Vote(p,date);
              HashSet<Vote> vv = new HashSet<>();
                      vv.add(v);
-            polls.replace(s , vv);
-            output = true;
+            polls.replace(s,vv);
+           output = true;
         }
-        if(i==1){
-            if(voters.isEmpty())
-            voters.add(p);
-             else {
-                if(voters.contains(p)){
-                System.out.println("Already exicts");
-                output = false ;
-                 }
-                 else
+        if(i!=0) {
+            if (voters.isEmpty()) {
                 voters.add(p);
-             }
+            } else {
+                if (voters.contains(p)) {
+                    System.out.println("Already exist");
+                    output = false;
+                } else
+                    voters.add(p);
+            }
+        }
+        }
+        if(ya== 1){
+            int i = 0 ;
+            boolean a = polls.containsKey(s);
+            if(a){
+                i++;
+                JalaliCalendar d = new JalaliCalendar(1399,8,07);
+                String date =  d.toString();
+                Vote v = new Vote(p,date);
+                HashSet<Vote> vv = new HashSet<>();
+                vv.add(v);
+                polls.replace(s,vv);
+                output = true;
+            }
+            if(i!=0) {
+                    voters.add(p);
 
-         }
+
+            }}
+
     return  output;}
 
 
